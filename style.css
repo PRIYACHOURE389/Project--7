@@ -1,0 +1,41 @@
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.result-details {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.result-image img {
+    max-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.result-text {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.further-details {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
