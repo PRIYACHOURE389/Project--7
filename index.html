@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Tweet Classification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Dark mode background color */
+            color: #ffffff; /* Dark mode text color */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Dark mode container background color */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Dark mode container shadow */
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff; /* Dark mode heading text color */
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: #ffffff; /* Dark mode label text color */
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            margin-bottom: 20px;
+            background-color: #292929; /* Dark mode textarea background color */
+            color: #ffffff; /* Dark mode textarea text color */
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Disaster Tweet Classification</h1>
+        <form action="/predict" method="post">
+            <label for="text">Enter a tweet:</label><br>
+            <textarea id="text" name="text" rows="4" placeholder="Type your tweet here..." required></textarea><br>
+            <input type="submit" value="Classify">
+        </form>
+        <div class="result">
+            {% if prediction %}
+            <h2>Classification Result:</h2>
+            <p class="result-text">{{ prediction }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include Plotly.js for interactive charts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Dark mode background color */
+            color: #ffffff; /* Dark mode text color */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Dark mode container background color */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Dark mode container shadow */
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff; /* Dark mode heading text color */
+            margin-bottom: 20px;
+        }
+        .result-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .result-visualization {
+            flex: 1;
+            padding-right: 20px;
+            max-width: 300px; /* Limit max width of visualization */
+            margin: 0 auto; /* Center visualization */
+        }
+        .result-text {
+            flex: 1;
+            text-align: left;
+        }
+        .further-details {
+            color: #007bff; /* Link color */
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            color: #cccccc; /* List item text color */
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Classification Result</h1>
+        <div class="result-details">
+            <div class="result-text">
+                <p class="classification-result">{{ result }}</p>
+                <p class="further-details">Further details:</p>
+                <ul>
+                    <li>This tweet was classified based on its content.</li>
+                    <li>The model analyzed various factors to determine the classification.</li>
+                    <li>Classification accuracy may vary depending on the complexity of the tweet.</li>
+                </ul>
+            </div>
+            <div class="result-visualizations">
+                <!-- Plot for distribution of disaster vs. non-disaster tweets -->
+                <div id="disaster-distribution"></div>
+                <!-- Plot for performance metrics -->
+                <div id="performance-metrics"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Script for generating the visualizations -->
+    <script>
+        // Sample data for tweet distribution
+        var tweetDistributionData = [{
+            x: ['Disaster', 'Non-Disaster'],
+            y: [65, 35],
+            type: 'bar',
+            marker: {
+                color: ['#ff7f0e', '#1f77b4']
+            }
+        }];
+
+        var tweetDistributionLayout = {
+            title: 'Tweet Distribution',
+            xaxis: { title: 'Tweet Type' },
+            yaxis: { title: 'Percentage' },
+            margin: { t: 50, l: 30, r: 30, b: 50 } // Adjust margins
+        };
+
+        Plotly.newPlot('disaster-distribution', tweetDistributionData, tweetDistributionLayout, { displayModeBar: false });
+
+        // Sample data for performance metrics
+        var performanceMetricsData = [{
+            x: ['Accuracy', 'Precision', 'Recall', 'F1-score'],
+            y: [0.85, 0.78, 0.92, 0.84],
+            type: 'bar',
+            marker: {
+                color: '#007bff'
+            }
+        }];
+
+        var performanceMetricsLayout = {
+            title: 'Model Performance Metrics',
+            xaxis: { title: 'Metric' },
+            yaxis: { title: 'Value' },
+            margin: { t: 50, l: 30, r: 30, b: 50 } // Adjust margins
+        };
+
+        Plotly.newPlot('performance-metrics', performanceMetricsData, performanceMetricsLayout, { displayModeBar: false });
+    </script>
+</body>
+</html>
